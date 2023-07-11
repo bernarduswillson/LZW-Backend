@@ -1,23 +1,31 @@
 {
-  "name": "backend",
+  "name": "lzw-backend",
   "version": "1.0.0",
-  "description": "backend",
-  "main": "app.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "app": "nodemon app.js",
+    "start": "node index.js",
+    "app": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "bernarduswillson",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bernarduswillson/LZW-Backend.git"
+  },
+  "author": "bewe",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bernarduswillson/LZW-Backend/issues"
+  },
+  "homepage": "https://github.com/bernarduswillson/LZW-Backend#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
     "config": "^3.3.9",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
-    "mongoose": "^7.3.1"
+    "mongoose": "^7.3.2"
   },
   "devDependencies": {
-    "@types/node": "^20.3.1",
-    "nodemon": "^2.0.22"
+    "nodemon": "^3.0.1"
   }
 }
