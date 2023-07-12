@@ -6,7 +6,7 @@ function lzwCompress(text) {
   let dictionary = {};
   let maxCode = 127;
 
-  // initialize dictionary with all possible single-character sequences
+  // initialize dictionary
   for (let i = 0; i <= maxCode; i++) {
     dictionary[String.fromCharCode(i)] = i;
   }
@@ -34,6 +34,7 @@ function lzwCompress(text) {
   return binaryData;
 }
 
+// convert to 8-bit binary
 function decimalToBinary(decimal) {
   let binary = decimal.toString(2);
   while (binary.length < 8) {
@@ -46,7 +47,7 @@ function lzwDecompress(binaryData) {
   let dictionary = {};
   let maxCode = 127;
 
-  // initialize dictionary with all possible single-character sequences
+  // initialize dictionary
   for (let i = 0; i <= maxCode; i++) {
     dictionary[i] = String.fromCharCode(i);
   }
@@ -54,6 +55,7 @@ function lzwDecompress(binaryData) {
   let compressedData = [];
   let binaryNumbers = binaryData.split(' ');
 
+  // convert binary to decimal
   for (let i = 0; i < binaryNumbers.length; i++) {
     compressedData.push(parseInt(binaryNumbers[i], 2));
   }
@@ -64,14 +66,14 @@ function lzwDecompress(binaryData) {
 
   for (let i = 1; i < compressedData.length; i++) {
     let currentCode = compressedData[i];
-
     let entry = dictionary[currentCode];
+
+    // if entry is undefined, add it
     if (entry === undefined) {
       if (dictionary[compressedData[i - 1]] === undefined){
         entry = "*unknown character*"; 
       } else {
         entry = dictionary[compressedData[i - 1]] + dictionary[compressedData[i - 1]][0];
-        
       }
     }
 
@@ -83,6 +85,7 @@ function lzwDecompress(binaryData) {
     currentSequence = entry;
   }
   
+  // remove non-printable characters
   for (let i = 0; i < output.length; i++) {
     if (output[i].charCodeAt(0) < 32 || output[i].charCodeAt(0) > 126) {
       output.pop();
